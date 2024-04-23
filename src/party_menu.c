@@ -68,6 +68,7 @@
 #include "constants/quest_log.h"
 #include "constants/songs.h"
 #include "constants/sound.h"
+#include "battle_setup.h"
 
 #define PARTY_PAL_SELECTED     (1 << 0)
 #define PARTY_PAL_FAINTED      (1 << 1)
@@ -5053,7 +5054,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
     u16 item = gSpecialVar_ItemId;
     bool8 noEffect;
 
-    if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL
+    && !levelCappedNuzlocke(GetMonData(mon, MON_DATA_LEVEL)))
         noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
     else
         noEffect = TRUE;

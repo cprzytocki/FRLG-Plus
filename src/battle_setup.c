@@ -1028,6 +1028,70 @@ u16 Script_HasTrainerBeenFought(void)
     return FlagGet(GetTrainerAFlag());
 }
 
+static u8 getLevelCap(void){
+    u8 levelCap = 0;
+    u16 nextLeader, i;
+    const struct TrainerMonItemCustomMoves *partyData;
+
+    if (FlagGet(FLAG_DEFEATED_CHAMP))
+        levelCap = 100;
+    if (!FlagGet(FLAG_DEFEATED_BROCK))
+        levelCap = 15;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_MISTY))
+        levelCap = 22;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_LT_SURGE))
+        levelCap = 26;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_ERIKA))
+        levelCap = 31;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_KOGA))
+        levelCap = 46;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_SABRINA))
+        levelCap = 46;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_BLAINE))
+        levelCap = 51;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_LEADER_GIOVANNI))
+        levelCap =  54;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_LORELEI))
+        levelCap =  58;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_BRUNO))
+        levelCap =  60;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_AGATHA))
+        levelCap =  62;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_LANCE))
+        levelCap =  64;
+        // nextLeader = TRAINER_LEADER_BROCK;
+    else if (!FlagGet(FLAG_DEFEATED_CHAMP))
+        // nextLeader = TRAINER_LEADER_BROCK;
+        levelCap = 67;
+
+    // partyData = gTrainers[nextLeader].party.ItemCustomMoves;
+    // for (i = 0; i < gTrainers[nextLeader].partySize; i){
+    //     if (partyData[i].lvl > levelCap)
+    //         levelCap = partyData[i].lvl;
+    // }
+    return levelCap;
+}
+
+bool8 levelCappedNuzlocke(u8 level){
+    u8 levelCap = getLevelCap();
+    // if (FlagGet(FLAG_DEFEATED_CHAMP))
+    //     return FALSE;  //Redundant since getLevelCap would already return 100 for these, but better to be explicit
+    if (level >= levelCap)
+        return TRUE;
+    return FALSE;
+}
+
 void SetBattledTrainerFlag(void)
 {
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))

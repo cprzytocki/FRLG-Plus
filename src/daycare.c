@@ -521,7 +521,8 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     BoxMonToMon(&daycareMon->mon, &pokemon);
     PopulateBoxHpAndStatusToPartyMon(&pokemon);
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL
+    && !levelCappedNuzlocke(GetMonData(&pokemon, MON_DATA_LEVEL)))
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
