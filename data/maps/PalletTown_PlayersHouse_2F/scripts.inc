@@ -22,6 +22,17 @@ PalletTown_PlayersHouse_2F_FirstWarpIn::
 
 PalletTown_PlayersHouse_2F_EventScript_NES::
 	msgbox PalletTown_PlayersHouse_2F_Text_PlayedWithNES, MSGBOX_SIGN
+	finditem ITEM_RARE_CANDY 999
+	finditem ITEM_HP_UP 999 
+	finditem ITEM_PROTEIN 999 
+	finditem ITEM_IRON 999
+	finditem ITEM_CALCIUM 999
+	finditem ITEM_ZINC 999
+	finditem ITEM_CARBOS 999
+	finditem ITEM_PP_UP 999
+	finditem ITEM_PP_MAX 999
+	finditem ITEM_PP_MAX 999
+	findItem ITEM_FULL_RESTORE 999
 	end
 
 PalletTown_PlayersHouse_2F_EventScript_Sign::
